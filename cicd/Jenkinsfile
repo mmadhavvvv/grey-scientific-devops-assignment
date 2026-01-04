@@ -1,0 +1,43 @@
+pipeline {
+
+  agent any
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        echo 'Pulling latest code from GitHub repository'
+      }
+    }
+
+    stage('Build') {
+      steps {
+        echo 'Building Docker images using Docker Compose'
+        sh 'docker-compose build'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        echo 'Running tests (placeholder for future test cases)'
+      }
+    }
+
+    stage('Deploy') {
+      steps {
+        echo 'Deploying application using Docker Compose'
+        sh 'docker-compose up -d'
+      }
+    }
+  }
+
+  post {
+    success {
+      echo 'CI/CD pipeline completed successfully'
+    }
+    failure {
+      echo 'CI/CD pipeline failed'
+    }
+  }
+}
+
